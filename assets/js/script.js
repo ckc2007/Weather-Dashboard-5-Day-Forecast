@@ -1,10 +1,10 @@
 // set up variables to target html elements
 var formEl = document.querySelector("#search-form");
 // var submitBtn = document.querySelector("#submitBtn");
-var cityInput = $("#city-input");
-var currentWeatherEl = $("#current-weather");
-var forecastEl = $("#forecast");
-var searchHistoryListEl = $("#search-history");
+var cityInput = document.querySelector("#city-input");
+var currentWeatherEl = document.querySelector("#current-weather");
+var forecastEl = document.querySelector("#forecast");
+var searchHistoryListEl = document.querySelector("#search-history");
 
 // put this here so you dont need to copy and paste it in each time
 var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
@@ -19,7 +19,7 @@ formEl.addEventListener("submit", (event) => {
   // what are we getting?
   // get the user input value
   var city = cityInput.value;
-  console.log(city);
+  //   console.log(city);
 
   // need to call the api now and enter the city to the query parameter
   // use fetch?
@@ -28,7 +28,7 @@ formEl.addEventListener("submit", (event) => {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      //   console.log(data);
       //   need current and future conditions:
       //   we need city name, date, icon, temperature, humidity and wind speed
       const currentWeather = {
@@ -43,24 +43,23 @@ formEl.addEventListener("submit", (event) => {
       //   show current weather data
       //   create a paragraph, or maybe make a card and asign innerText - for now <p>
       currentWeatherEl.innerHTML = `
-    <h3>${
-      currentWeather.city
-    } (${currentWeather.date.toLocaleDateString()}) <img src="${
+      <h2>${
+        currentWeather.city
+      } (${currentWeather.date.toLocaleDateString()})<img src="${
         currentWeather.icon
-      }"></h3>
-    <p>Temperature: ${currentWeather.temperature}°F</p>
-    <p>Humidity: ${currentWeather.humidity}%</p>
-    <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>`;
+      }" alt="${data.weather[0].description}"></h2>
+      <p>Temperature: ${currentWeather.temperature} °F</p>
+      <p>Humidity: ${currentWeather.humidity}%</p>
+      <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>
+    `;
 
       // get the forecast data
       return fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}`
       );
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
+    .then((response) => response.json())
+    .then((data) => {
       // this needs some research here - get the five day
       var forecastData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
