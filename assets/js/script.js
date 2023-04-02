@@ -1,5 +1,6 @@
 // set up variables to target html elements
-var formEl = $("#search-form");
+var formEl = document.querySelector("#search-form");
+// var submitBtn = document.querySelector("#submitBtn");
 var cityInput = $("#city-input");
 var currentWeatherEl = $("#current-weather");
 var forecastEl = $("#forecast");
@@ -12,7 +13,7 @@ var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
 var searchHistoryArr = [];
 
 // event listener for the search form submit button
-formEl.on("submit", (event) => {
+formEl.addEventListener("submit", (event) => {
   // remember to do this to prevent auto clearing and reload
   event.preventDefault();
   // what are we getting?
@@ -25,15 +26,12 @@ formEl.on("submit", (event) => {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}`
   )
-    .then(function (response) {
-      // use an arrow function here maybe? looks ugly like this...
-      return response.json();
-    })
-    .then(function (data) {
+    .then((response) => response.json())
+    .then((data) => {
       console.log(data);
       //   need current and future conditions:
       //   we need city name, date, icon, temperature, humidity and wind speed
-      var currentWeather = {
+      const currentWeather = {
         city: data.name,
         date: new Date(data.dt * 1000),
         icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
@@ -47,10 +45,10 @@ formEl.on("submit", (event) => {
       currentWeatherEl.innerHTML = `
     <h3>${
       currentWeather.city
-    } ${currentWeather.date.toLocaleDateString()} <img src="${
+    } (${currentWeather.date.toLocaleDateString()}) <img src="${
         currentWeather.icon
-      }"></h2>
-    <p>Temperature: ${currentWeather.temperature} degrees Farenheit</p>
+      }"></h3>
+    <p>Temperature: ${currentWeather.temperature}°F</p>
     <p>Humidity: ${currentWeather.humidity}%</p>
     <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>`;
 
@@ -58,10 +56,28 @@ formEl.on("submit", (event) => {
       return fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}`
       );
-    }).then(function (response) {
-        return response.json()).then(function (data) {
-            
-        })
     })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // this needs some research here - get the five day
+      var forecastData = data.list.filter((item) =>
+        item.dt_txt.includes("12:00:00")
+      );
+      const forecast = forecastData.map((item) => ({
+        date: new Date(item.dt * 1000),
+        icon: `https://openweathermap.org/img/w/${item.weather[0].icon}.png`,
+        temperature: item.main.temp,
+        humidity: item.main.humidity,
+        windSpeed: item.wind.speed,
+      }));
+
+      // display the forecast data
+      //   forecastDiv.innerHTML = forecast.map(item => `
+      //     <div>
+      //       <h3>${item.date.toLocaleDateString()}</h3>
+      //       <img src="${item.icon}" alt="${data.weather[0].description}">
+      //       <p>Temperature: ${item.temperature}
     });
 });
