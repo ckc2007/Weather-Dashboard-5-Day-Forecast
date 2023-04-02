@@ -45,7 +45,8 @@ formEl.addEventListener("submit", (event) => {
         icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
         // need to adjust the unity here:
         // forecast.temperature.unit Unit of measurements. Possible value is Celsius, Kelvin, Fahrenheit.
-        temperature: data.main.temp.farenheit,
+        // kelvin to farenheit conversion - also limit decimals
+        temperature: (((data.main.temp) - 273.15) * (9/5) + 32).toFixed(2),
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
         // i like the description data - lets include that too
