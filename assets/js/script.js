@@ -4,3 +4,7 @@ var cityInput = $("#city-input");
 var currentWeatherEl = $("#current-weather");
 var forecastEl = $("#forecast");
 var searchHistoryListEl = $("#search-history");
+
+// empty array to hold search history
+var searchHistoryArr = [];
+
