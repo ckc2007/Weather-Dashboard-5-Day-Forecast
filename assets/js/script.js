@@ -34,7 +34,7 @@ formEl.addEventListener("submit", (event) => {
       const currentWeather = {
         //   find under the name property of data object returned from weather
         city: data.name,
-        // date comes in like this: 1680477816
+        // date comes in like this: 1680477816 --- seconds multiply by 1000 to get miliseconds format
         // according to api docs, this is: Time of data forecasted, unix, UTC
         // lol returns 1970...
         // The UNIX timestamp is defined as the number of seconds since January 1, 1970 UTC. In JavaScript, in order to get the current timestamp, you can use Date. now() . It's important to note that Date.
@@ -46,7 +46,7 @@ formEl.addEventListener("submit", (event) => {
         // need to adjust the unity here:
         // forecast.temperature.unit Unit of measurements. Possible value is Celsius, Kelvin, Fahrenheit.
         // kelvin to farenheit conversion - also limit decimals
-        temperature: (((data.main.temp) - 273.15) * (9/5) + 32).toFixed(2),
+        temperature: ((data.main.temp - 273.15) * (9 / 5) + 32).toFixed(2),
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
         // i like the description data - lets include that too
@@ -60,6 +60,7 @@ formEl.addEventListener("submit", (event) => {
         currentWeather.city
       } (${currentWeather.date.toLocaleDateString()})<img src="${
         currentWeather.icon
+        // use the description as the alt << see above
       }" alt="${data.weather[0].description}"></h3>
       <p>Temperature: ${currentWeather.temperature} °F</p>
       <p>Humidity: ${currentWeather.humidity}%</p>
