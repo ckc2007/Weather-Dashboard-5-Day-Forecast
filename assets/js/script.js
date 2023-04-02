@@ -53,5 +53,15 @@ formEl.on("submit", (event) => {
     <p>Temperature: ${currentWeather.temperature} degrees Farenheit</p>
     <p>Humidity: ${currentWeather.humidity}%</p>
     <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>`;
+
+      // get the forecast data
+      return fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}`
+      );
+    }).then(function (response) {
+        return response.json()).then(function (data) {
+            
+        })
+    })
     });
 });
