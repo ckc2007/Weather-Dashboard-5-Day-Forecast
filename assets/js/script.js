@@ -19,7 +19,7 @@ formEl.addEventListener("submit", (event) => {
   // what are we getting?
   // get the user input value
   var city = cityInput.value;
-  //   console.log(city);
+  console.log(city);
 
   // need to call the api now and enter the city to the query parameter
   // use fetch?
@@ -28,7 +28,7 @@ formEl.addEventListener("submit", (event) => {
   )
     .then((response) => response.json())
     .then((data) => {
-      //   console.log(data);
+        console.log(data);
       //   need current and future conditions:
       //   we need city name, date, icon, temperature, humidity and wind speed
       const currentWeather = {
