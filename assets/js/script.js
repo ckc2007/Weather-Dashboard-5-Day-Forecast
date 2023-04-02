@@ -23,9 +23,12 @@ formEl.on("submit", (event) => {
   // use fetch?
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}`
-  ).then((response)=>response.json()).then((data)=>{
-      var currentWeather = {
-          
-      }
-  })
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var currentWeather = {};
+      
+    });
 });
