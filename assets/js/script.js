@@ -28,29 +28,42 @@ formEl.addEventListener("submit", (event) => {
   )
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
+      console.log(data);
       //   need current and future conditions:
       //   we need city name, date, icon, temperature, humidity and wind speed
       const currentWeather = {
+        //   find under the name property of data object returned from weather
         city: data.name,
+        // date comes in like this: 1680477816
+        // according to api docs, this is: Time of data forecasted, unix, UTC
+        // lol returns 1970...
+        // The UNIX timestamp is defined as the number of seconds since January 1, 1970 UTC. In JavaScript, in order to get the current timestamp, you can use Date. now() . It's important to note that Date.
+        // new Date()
+        // When called as a constructor, returns a new Date object.
         date: new Date(data.dt * 1000),
+        // list.weather.icon Weather icon id
         icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-        temperature: data.main.temp,
+        // need to adjust the unity here:
+        // forecast.temperature.unit Unit of measurements. Possible value is Celsius, Kelvin, Fahrenheit.
+        temperature: data.main.temp.farenheit,
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
+        // i like the description data - lets include that too
+        description: data.weather[0].description,
       };
 
       //   show current weather data
       //   create a paragraph, or maybe make a card and asign innerText - for now <p>
       currentWeatherEl.innerHTML = `
-      <h2>${
+      <h3>${
         currentWeather.city
       } (${currentWeather.date.toLocaleDateString()})<img src="${
         currentWeather.icon
-      }" alt="${data.weather[0].description}"></h2>
+      }" alt="${data.weather[0].description}"></h3>
       <p>Temperature: ${currentWeather.temperature} °F</p>
       <p>Humidity: ${currentWeather.humidity}%</p>
       <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>
+      <p>Description: ${currentWeather.description}</p>
     `;
 
       // get the forecast data
