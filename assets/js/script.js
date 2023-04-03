@@ -131,6 +131,7 @@ function searchWeather() {
     forecastEl.innerHTML = "";
     // what are we getting?
     // get the user input value
+    // I would probably move this inside the fetch so that if the city does not exist it will not create a button - but come back to this later
     var city = cityInput.value;
     // console.log(city);
     // need a tile case function here -
@@ -246,9 +247,12 @@ function searchWeather() {
           //   console.log(forecastHistoryArr);
           //   forecastHistoryArr.push(forecastChildEl);
         }
-      });
+      })
+      .catch((error) => console.log(error));
   });
+  //   end submit button event listener
 }
+// end submit button function
 searchWeather();
 
 clearSearchBtn.addEventListener("click", function () {
