@@ -7,7 +7,8 @@ var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 var searchHistoryListEl = document.querySelector("#search-history");
 var savedCityBtn = document.querySelector(".btn");
-
+// empty array to hold search history
+var searchHistoryArr = [];
 // put this here so you dont need to copy and paste it in each time
 var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
 
@@ -15,10 +16,10 @@ var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
 if (localStorage.getItem("search-history") !== null) {
   searchHistoryArr = JSON.parse(localStorage.getItem("search-history"));
   searchHistoryListEl.innerHTML = "";
+  console.log(searchHistoryArr);
   renderSavedSearch();
 }
-// empty array to hold search history
-var searchHistoryArr = [];
+
 // add arr to local storage
 function saveLocal() {
   localStorage.setItem("search-history", JSON.stringify(searchHistoryArr));
