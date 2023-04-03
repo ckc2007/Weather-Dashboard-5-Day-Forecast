@@ -88,10 +88,15 @@ formEl.addEventListener("submit", (event) => {
       }));
 
       // display the forecast data
-      //   forecastDiv.innerHTML = forecast.map(item => `
-      //     <div>
-      //       <h3>${item.date.toLocaleDateString()}</h3>
-      //       <img src="${item.icon}" alt="${data.weather[0].description}">
-      //       <p>Temperature: ${item.temperature}
+      forecastEl.innerHTML = forecast.map((item, index) => `
+      <div class="card forecastDay-${index+1}">
+      <h3>${item.date.toLocaleDateString()}</h3>
+      <img src="${item.icon}" alt="${data.weather[0].description}">
+      <p>Temperature: ${item.temperature} °F</p>
+      <p>Humidity: ${item.humidity}%</p>
+      <p>Wind Speed: ${item.windSpeed} MPH</p>
+      <p>Description: ${item.description}</p>
+      </div>
+    `;
     });
 });
