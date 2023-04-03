@@ -45,10 +45,9 @@ Link to live site:
 [https://ckc2007.github.io/Weather-Dashboard-5-Day-Forecast/]
 
 ```
-The following images show the deployed site at different times of day:
+The following images show the deployed site:
 ```
 
-![demo page](./assets/images/Screen%20Shot%202023-04-03%20at%201.38.46%20PM.png)
 ![demo page](./assets/images/Screen%20Shot%202023-04-03%20at%201.39.00%20PM.png)
 ![demo page](./assets/images/Screen%20Shot%202023-04-03%20at%201.39.17%20PM.png)
 
