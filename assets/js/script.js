@@ -6,12 +6,21 @@ var cityInput = document.querySelector("#city-input");
 var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 var searchHistoryListEl = document.querySelector("#search-history");
+var savedCityBtn = document.querySelector(".btn");
 
 // put this here so you dont need to copy and paste it in each time
 var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
 
 // empty array to hold search history
 var searchHistoryArr = [];
+// add arr to local storage
+localStorage.setItem("search-history", JSON.stringify(searchHistoryArr));
+// retrieve from local storage - check not empty
+if (localStorage.getItem("search-history") !== null) {
+  searchHistoryArr = JSON.parse(localStorage.getItem("search-history"));
+  searchHistoryListEl.innerHTML = "";
+  renderSavedSearch();
+}
 
 // event listener for the search form submit button
 formEl.addEventListener("submit", (event) => {
@@ -32,15 +41,13 @@ formEl.addEventListener("submit", (event) => {
     for (var i = 0; i < searchHistoryArr.length; i++) {
       //   var search = searchHistoryArr[i];
       var buttonEl = document.createElement("button");
-      buttonEl.classList.add("btn");
       buttonEl.setAttribute("id", `${searchHistoryArr[i]}`);
+      buttonEl.classList.add("btn");
       buttonEl.textContent = searchHistoryArr[i].toString();
       searchHistoryListEl.appendChild(buttonEl);
     }
   }
   renderSavedSearch();
-
-  //   set up event listener for each city button
 
   // need to call the api now and enter the city to the query parameter
   // use fetch?
@@ -136,3 +143,15 @@ formEl.addEventListener("submit", (event) => {
       }
     });
 });
+
+//   set up event listener for each city button
+function displaySaved() {
+  searchHistoryListEl.addEventListener("click", function (event) {
+    var element = event.target;
+    if (element.matches(".btn")) {
+      currentWeatherEl.innerHTML = "";
+      forecastEl.innerHTML = "";
+      // find the local storage object that matches the name/id of the btn and return the display based on its data
+    }
+  });
+}
