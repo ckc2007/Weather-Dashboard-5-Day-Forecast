@@ -73,7 +73,7 @@ $(document).on("click", ".btn", function () {
               currentWeather.city
             } (${currentWeather.date.toLocaleDateString()})<img src="${
         currentWeather.icon
-      }" alt="${data.weather[0].description}"></h3>
+      }"></h3>
             <p>Temperature: ${currentWeather.temperature} °F</p>
             <p>Humidity: ${currentWeather.humidity}%</p>
             <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>
@@ -108,9 +108,7 @@ $(document).on("click", ".btn", function () {
         forecastChildEl.classList.add("card");
         forecastChildEl.innerHTML = `
               <h3>${forecast[i].date.toLocaleDateString()}
-              <img src="${forecast[i].icon}" alt="${
-          forecast[i].description
-        }"></h3>
+              <img src="${forecast[i].icon}"}"></h3>
               <p>Temperature: ${forecast[i].temperature} °F</p>
               <p>Humidity: ${forecast[i].humidity}%</p>
               <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
@@ -119,7 +117,6 @@ $(document).on("click", ".btn", function () {
         forecastEl.appendChild(forecastChildEl);
       }
     })
-    .catch((error) => console.log(error));
 });
 // end button litener
 
@@ -250,7 +247,6 @@ function searchWeather() {
           //   forecastHistoryArr.push(forecastChildEl);
         }
       })
-      .catch((error) => console.log(error));
   });
   //   end submit button event listener
 }
