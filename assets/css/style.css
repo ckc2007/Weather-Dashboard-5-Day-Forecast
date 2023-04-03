@@ -50,6 +50,9 @@ main {
   display: flex;
 }
 .card {
+  background-color: grey;
+  color: white;
+  padding: 10px;
   margin: 20px;
   border: 5px solid black;
   border-radius: 5px;
