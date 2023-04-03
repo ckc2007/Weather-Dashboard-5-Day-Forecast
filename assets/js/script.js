@@ -7,6 +7,7 @@ var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 var searchHistoryListEl = document.querySelector("#search-history");
 var savedCityBtn = document.querySelector(".btn");
+var clearSearchBtn = document.querySelector("#clearBtn");
 // empty array to hold search history
 var searchHistoryArr = [];
 // put this here so you dont need to copy and paste it in each time
