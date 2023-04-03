@@ -250,3 +250,9 @@ function searchWeather() {
   });
 }
 searchWeather();
+
+clearSearchBtn.addEventListener("click", function () {
+  localStorage.removeItem("search-history");
+  searchHistoryListEl.innerHTML = "";
+  searchHistoryArr = [];
+});
