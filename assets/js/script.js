@@ -102,6 +102,7 @@ formEl.addEventListener("submit", (event) => {
       for (let i = 0; i < forecast.length; i++) {
         console.log(forecast[i]);
         var forecastChildEl = document.createElement("div");
+        forecastChildEl.classList.add("card");
         forecastChildEl.innerHTML = `
           <h3>${forecast[i].date.toLocaleDateString()}
           <img src="${forecast[i].icon}" alt="${forecast[i].description}"></h3>
