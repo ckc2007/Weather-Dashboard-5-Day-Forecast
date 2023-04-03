@@ -115,3 +115,7 @@ formEl.addEventListener("submit", (event) => {
       }
     });
 });
+
+function renderSavedSearch(){
+    
+}
