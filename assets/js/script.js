@@ -68,13 +68,14 @@ formEl.addEventListener("submit", (event) => {
       <p>Description: ${currentWeather.description}</p>
     `;
 
-      // get the forecast data
+      // get the forecast data >>> research forecaset api docs here - having trouble finding the right keys
       return fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}`
       );
     })
     .then((response) => response.json())
     .then((data) => {
+        console.log(data)
       // this needs some research here - get the five day
       var forecastData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
