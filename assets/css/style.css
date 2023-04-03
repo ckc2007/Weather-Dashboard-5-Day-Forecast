@@ -44,13 +44,17 @@ h1 {
 }
 
 #clearBtn:hover {
-  background-color: purple;
+  background-color: magenta;
   transition: all 0.3s ease-in-out;
   font-size: 120%;
 }
 
+.btn {
+  border-radius: 5px;
+  background-color: rgb(221, 240, 246);
+}
 .btn:hover {
-  background-color: lightblue;
+  background-color: turquoise;
   transition: all 0.3s ease-in-out;
   font-size: 120%;
 }
