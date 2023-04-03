@@ -5,9 +5,11 @@
   font-family: Arial;
 }
 
-#header {
+header {
   margin-bottom: 20px;
   font-size: larger;
+  padding: 5px;
+  border: 5px solid black;
 }
 
 #time {
