@@ -89,7 +89,7 @@ formEl.addEventListener("submit", (event) => {
         .map((item) => ({
           date: new Date(item.dt * 1000),
           icon: `https://openweathermap.org/img/w/${item.weather[0].icon}.png`,
-          temperature: item.main.temp,
+          temperature: ((item.main.temp - 273.15) * (9 / 5) + 32).toFixed(2),
           humidity: item.main.humidity,
           windSpeed: item.wind.speed,
           //   forgot to put this in...
