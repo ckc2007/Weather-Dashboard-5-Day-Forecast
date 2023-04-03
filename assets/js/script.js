@@ -1,5 +1,3 @@
-// a note to the grader...I know, I know...css...but, the js took a long time - I'll have to make this prettier when I have a free moment.
-
 // set up variables to target html elements
 var formEl = document.querySelector("#search-form");
 // var submitBtn = document.querySelector("#submitBtn");
