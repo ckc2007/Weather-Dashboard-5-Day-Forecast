@@ -75,31 +75,34 @@ formEl.addEventListener("submit", (event) => {
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data)
+      console.log(data);
       // this needs some research here - get the five day
+      //   the list key of the forecast object gives you the days out..you need the
+      // correct time (every 24 hours - the api gives you increments of 3 hours...)
+      // this is getting complex - so heres whats going on - filtering the list of forecast objects based on a 24 hour interval, then creating a new array with the data that we want and are going to use here, the slicing that array and grabbing only the first five items...5x day-objects ...
       var forecastData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
       );
-      const forecast = forecastData.map((item) => ({
-        date: new Date(item.dt * 1000),
-        icon: `https://openweathermap.org/img/w/${item.weather[0].icon}.png`,
-        temperature: item.main.temp,
-        humidity: item.main.humidity,
-        windSpeed: item.wind.speed,
-      }));
+      const forecast = forecastData
+        .map((item) => ({
+          date: new Date(item.dt * 1000),
+          icon: `https://openweathermap.org/img/w/${item.weather[0].icon}.png`,
+          temperature: item.main.temp,
+          humidity: item.main.humidity,
+          windSpeed: item.wind.speed,
+        }))
+        .slice(0, 5);
 
       // display the forecast data
-      forecastEl.innerHTML = forecast.map((item, index) => {
-        `
-      <div class="card forecastDay-${index + 1}">
-      <h3>${item.date.toLocaleDateString()}
-      <img src="${item.icon}" alt="${data.weather[0].description}"></h3>
-      <p>Temperature: ${item.temperature} °F</p>
-      <p>Humidity: ${item.humidity}%</p>
-      <p>Wind Speed: ${item.windSpeed} MPH</p>
-      <p>Description: ${item.description}</p>
-      </div>
-    `;
-      });
+      for (let i = 0; i < forecast.length; i++) {
+        forecastEl.innerHTML = `<div class="card">
+        <h3>${forecast[i].date.toLocaleDateString()}
+        <img src="${forecast[i].icon}" alt="${data.weather[0].description}"></h3>
+        <p>Temperature: ${forecast[i].temperature} °F</p>
+        <p>Humidity: ${forecast[i].humidity}%</p>
+        <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
+        <p>Description: ${forecast[i].description}</p>
+        </div>`;
+      }
     });
 });
