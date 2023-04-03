@@ -90,21 +90,26 @@ formEl.addEventListener("submit", (event) => {
           temperature: item.main.temp,
           humidity: item.main.humidity,
           windSpeed: item.wind.speed,
+          //   forgot to put this in...
+          description: item.weather[0].description,
         }))
         .slice(0, 5);
       console.log(forecast);
-    //   ok good we are getting the list of 5 days objects
+      //   ok good we are getting the list of 5 days objects
 
       // display the forecast data
-      //   for (let i = 0; i < forecast.length; i++) {
-      //     forecastEl.innerHTML = `<div class="card">
-      //     <h3>${forecast[i].date.toLocaleDateString()}
-      //     <img src="${forecast[i].icon}" alt="${data.weather[0].description}"></h3>
-      //     <p>Temperature: ${forecast[i].temperature} °F</p>
-      //     <p>Humidity: ${forecast[i].humidity}%</p>
-      //     <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
-      //     <p>Description: ${forecast[i].description}</p>
-      //     </div>`;
-      //   }
+      for (let i = 0; i < forecast.length; i++) {
+        console.log(forecast[i]);
+        var forecastChildEl = document.createElement("div");
+        forecastChildEl.innerHTML = `
+          <h3>${forecast[i].date.toLocaleDateString()}
+          <img src="${forecast[i].icon}" alt="${forecast[i].description}"></h3>
+          <p>Temperature: ${forecast[i].temperature} °F</p>
+          <p>Humidity: ${forecast[i].humidity}%</p>
+          <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
+          <p>Description: ${forecast[i].description}</p>
+          `;
+        forecastEl.appendChild(forecastChildEl);
+      }
     });
 });
