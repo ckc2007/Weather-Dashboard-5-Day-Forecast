@@ -19,12 +19,10 @@ if (localStorage.getItem("search-history") !== null) {
   console.log(searchHistoryArr);
   renderSavedSearch();
 }
-
 // add arr to local storage
 function saveLocal() {
   localStorage.setItem("search-history", JSON.stringify(searchHistoryArr));
 }
-// saveLocal();
 
 // arrays to hold current and future weather data from search
 // var currentHistoryArr = [];
