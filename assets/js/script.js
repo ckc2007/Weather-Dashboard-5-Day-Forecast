@@ -132,7 +132,18 @@ function searchWeather() {
     // get the user input value
     var city = cityInput.value;
     // console.log(city);
-    searchHistoryArr.push(city);
+    // need a tile case function here -
+    function toTitleCase(str) {
+      return str
+        .toLowerCase()
+        .split(" ")
+        .map(function (word) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(" ");
+    }
+    let cityProper = toTitleCase(city);
+    searchHistoryArr.push(cityProper);
     saveLocal();
     // debug here - do we need this here - yes
     renderSavedSearch();
