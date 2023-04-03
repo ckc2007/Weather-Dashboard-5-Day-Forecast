@@ -24,6 +24,7 @@ aside {
   border: 5px solid black;
   border-radius: 5px;
   padding: 10px;
+  min-width: 225px;
 }
 
 main {
@@ -78,6 +79,8 @@ h1 {
   background-color: rgb(221, 240, 246);
   margin-bottom: 5px;
   font-size: large;
+  width: 100%;
+  text-align: center;
 }
 
 .btn:hover {
