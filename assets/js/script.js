@@ -79,7 +79,8 @@ formEl.addEventListener("submit", (event) => {
       // this needs some research here - get the five day
       //   the list key of the forecast object gives you the days out..you need the
       // correct time (every 24 hours - the api gives you increments of 3 hours...)
-      // this is getting complex - so heres whats going on - filtering the list of forecast objects based on a 24 hour interval, then creating a new array with the data that we want and are going to use here, the slicing that array and grabbing only the first five items...5x day-objects ...
+      // this is getting complex - so heres whats going on - filtering the list of forecast objects based on a 24 hour interval, then creating a new array with the data that we want and are going to use here, then slicing that array and grabbing only the first five items...5x day-objects ...
+      //   note: we could implement a 5, 7, 10 day forecast option button and target the slice below - but we will do that later..
       var forecastData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
       );
