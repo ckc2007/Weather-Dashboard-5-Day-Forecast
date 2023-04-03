@@ -32,11 +32,15 @@ formEl.addEventListener("submit", (event) => {
     for (var i = 0; i < searchHistoryArr.length; i++) {
       //   var search = searchHistoryArr[i];
       var buttonEl = document.createElement("button");
+      buttonEl.classList.add("btn");
+      buttonEl.setAttribute("id", `${searchHistoryArr[i]}`);
       buttonEl.textContent = searchHistoryArr[i].toString();
       searchHistoryListEl.appendChild(buttonEl);
     }
   }
   renderSavedSearch();
+
+  //   set up event listener for each city button
 
   // need to call the api now and enter the city to the query parameter
   // use fetch?
