@@ -117,4 +117,12 @@ formEl.addEventListener("submit", (event) => {
     });
 });
 
-function renderSavedSearch() {}
+function renderSavedSearch() {
+  searchHistoryListEl.innerHTML = "";
+  for (var i = 0; i < searchHistoryArr.length; i++) {
+    var city = searchHistoryArr[i];
+    var buttonEl = document.createElement("button");
+    buttonEl.textContent = searchHistoryArr[i].toString();
+    searchHistoryListEl.appendChild(buttonEl);
+  }
+}
