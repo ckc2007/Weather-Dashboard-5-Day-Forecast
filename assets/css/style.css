@@ -11,38 +11,55 @@ header {
   font-size: larger;
   padding: 5px;
   border: 5px solid black;
-}
-
-#time {
-  font-weight: bold;
+  border-radius: 5px;
 }
 
 body {
   padding: 20px;
   /* background-image: url(../images/weather-header.jpeg); */
 }
-/* display all content center */
-.intro,
-.quiz-container,
-.score-page,
-.leaderboard {
-  padding: 20px;
-  text-align: center;
+aside {
+  width: 20%;
+  margin: 5px;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px;
 }
-/* .quiz-container {
-  text-align: left;
-} */
 
+main {
+  width: 100%;
+  margin: 5px;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+#current-weather-container {
+  margin: 20px;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#forecast-container {
+  /* display: flex; */
+  margin: 20px;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+#forecast {
+  display: flex;
+}
+.card {
+  margin: 20px;
+  border: 5px solid black;
+  border-radius: 5px;
+}
 h1 {
   margin-bottom: 20px;
   font-weight: bold;
 }
-/* keep the nav and timer hard left and right */
-.flex-space-between {
-  display: flex;
-  justify-content: space-between;
-}
-/* hide functionality */
+
+/* hide functionality if needed */
 .hide {
   display: none;
 }
@@ -56,7 +73,10 @@ h1 {
 .btn {
   border-radius: 5px;
   background-color: rgb(221, 240, 246);
+  margin-bottom: 5px;
+  font-size: large;
 }
+
 .btn:hover {
   background-color: turquoise;
   transition: all 0.3s ease-in-out;

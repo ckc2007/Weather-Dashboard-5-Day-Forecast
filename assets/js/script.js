@@ -40,6 +40,8 @@ function renderSavedSearch() {
     buttonEl.textContent = searchHistoryArr[i].toString();
     // savedCityBtn[i].appendChild(buttonEl);
     searchHistoryListEl.appendChild(buttonEl);
+    var breakEl = document.createElement("br");
+    searchHistoryListEl.appendChild(breakEl);
     // searchHistoryArr.push(`${searchHistoryArr[i]}`);
   }
   saveLocal();
