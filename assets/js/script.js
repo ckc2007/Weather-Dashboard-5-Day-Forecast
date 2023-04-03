@@ -92,17 +92,19 @@ formEl.addEventListener("submit", (event) => {
           windSpeed: item.wind.speed,
         }))
         .slice(0, 5);
+      console.log(forecast);
+    //   ok good we are getting the list of 5 days objects
 
       // display the forecast data
-      for (let i = 0; i < forecast.length; i++) {
-        forecastEl.innerHTML = `<div class="card">
-        <h3>${forecast[i].date.toLocaleDateString()}
-        <img src="${forecast[i].icon}" alt="${data.weather[0].description}"></h3>
-        <p>Temperature: ${forecast[i].temperature} °F</p>
-        <p>Humidity: ${forecast[i].humidity}%</p>
-        <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
-        <p>Description: ${forecast[i].description}</p>
-        </div>`;
-      }
+      //   for (let i = 0; i < forecast.length; i++) {
+      //     forecastEl.innerHTML = `<div class="card">
+      //     <h3>${forecast[i].date.toLocaleDateString()}
+      //     <img src="${forecast[i].icon}" alt="${data.weather[0].description}"></h3>
+      //     <p>Temperature: ${forecast[i].temperature} °F</p>
+      //     <p>Humidity: ${forecast[i].humidity}%</p>
+      //     <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
+      //     <p>Description: ${forecast[i].description}</p>
+      //     </div>`;
+      //   }
     });
 });
