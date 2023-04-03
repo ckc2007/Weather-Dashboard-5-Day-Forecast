@@ -1,4 +1,5 @@
 // set up variables to target html elements
+// i would like to use jquery here...but something wasn't working - debug
 var formEl = document.querySelector("#search-form");
 // var submitBtn = document.querySelector("#submitBtn");
 var cityInput = document.querySelector("#city-input");
@@ -116,6 +117,4 @@ formEl.addEventListener("submit", (event) => {
     });
 });
 
-function renderSavedSearch(){
-    
-}
+function renderSavedSearch() {}
