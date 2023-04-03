@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+#header {
+  margin-bottom: 20px;
+  font-size: larger;
+}
+
+#time {
+  font-weight: bold;
+}
+
+body {
+  padding: 20px;
+}
+/* display all content center */
+.intro,
+.quiz-container,
+.score-page,
+.leaderboard {
+  padding: 20px;
+  text-align: center;
+}
+/* .quiz-container {
+  text-align: left;
+} */
+
+h1 {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+/* keep the nav and timer hard left and right */
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+/* hide functionality */
+.hide {
+  display: none;
+}
+
+#clearBtn:hover {
+  background-color: purple;
+  transition: all 0.3s ease-in-out;
+  font-size: 120%;
+}
+
+.btn:hover {
+  background-color: lightblue;
+  transition: all 0.3s ease-in-out;
+  font-size: 120%;
+}
+
+#clearBtn {
+  display: block;
+  margin: 20px;
+  background-color: pink;
+  color: black;
+  font-weight: bold;
+}
+
+#submitBtn {
+  border-left: 1px solid black;
+  border-radius: 15px;
+  background-color: #06aed5;
+  color: white;
+}
+
+#submitBtn:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
