@@ -11,16 +11,16 @@ var savedCityBtn = document.querySelectorAll(".btn");
 // put this here so you dont need to copy and paste it in each time
 var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
 
-// empty array to hold search history
-var searchHistoryArr = [];
-// add arr to local storage
-localStorage.setItem("search-history", JSON.stringify(searchHistoryArr));
-// retrieve from local storage - check not empty
+// local storage
 if (localStorage.getItem("search-history") !== null) {
   searchHistoryArr = JSON.parse(localStorage.getItem("search-history"));
   searchHistoryListEl.innerHTML = "";
   renderSavedSearch();
 }
+// empty array to hold search history
+var searchHistoryArr = [];
+// add arr to local storage
+localStorage.setItem("search-history", JSON.stringify(searchHistoryArr));
 
 // arrays to hold current and future weather data from search
 // var currentHistoryArr = [];
@@ -36,8 +36,10 @@ function renderSavedSearch() {
     buttonEl.classList.add("btn");
     buttonEl.textContent = searchHistoryArr[i].toString();
     searchHistoryListEl.appendChild(buttonEl);
+    // savedCityBtn[i].appendChild(buttonEl);
   }
 }
+renderSavedSearch();
 // would like to eventually refactor this so that its not just a duplicate of the api call - could this be saved to local storage? would need to search the local storage array for an object with tags identifying location, current and future (day 1-5) - for now this seems to work fine.
 // render the info based on a button click - id is city name:
 $(document).on("click", ".btn", function () {
@@ -126,7 +128,7 @@ function searchWeather() {
     var city = cityInput.value;
     // console.log(city);
     searchHistoryArr.push(city);
-
+    // debug here - do we need this here - yes
     renderSavedSearch();
     // need to call the api now and enter the city to the query parameter
     // use fetch?
