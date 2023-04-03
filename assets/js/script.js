@@ -6,7 +6,7 @@ var cityInput = document.querySelector("#city-input");
 var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 var searchHistoryListEl = document.querySelector("#search-history");
-var savedCityBtn = document.querySelector(".btn");
+var savedCityBtn = document.querySelectorAll(".btn");
 
 // put this here so you dont need to copy and paste it in each time
 var myApiKey = `c9f4436f54acb5291e5113e098327c64`;
@@ -38,7 +38,7 @@ function renderSavedSearch() {
     searchHistoryListEl.appendChild(buttonEl);
   }
 }
-
+// would like to eventually refactor this so that its not just a duplicate of the api call - could this be saved to local storage? would need to search the local storage array for an object with tags identifying location, current and future (day 1-5) - for now this seems to work fine.
 // render the info based on a button click - id is city name:
 $(document).on("click", ".btn", function () {
   var city = $(this).attr("id");
