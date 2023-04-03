@@ -17,10 +17,26 @@ var searchHistoryArr = [];
 formEl.addEventListener("submit", (event) => {
   // remember to do this to prevent auto clearing and reload
   event.preventDefault();
+  //   use asynchronous
+  currentWeatherEl.innerHTML = "";
+  forecastEl.innerHTML = "";
   // what are we getting?
   // get the user input value
   var city = cityInput.value;
   console.log(city);
+  searchHistoryArr.push(city);
+
+  //   add city to the saved search list
+  function renderSavedSearch() {
+    searchHistoryListEl.innerHTML = "";
+    for (var i = 0; i < searchHistoryArr.length; i++) {
+      //   var search = searchHistoryArr[i];
+      var buttonEl = document.createElement("button");
+      buttonEl.textContent = searchHistoryArr[i].toString();
+      searchHistoryListEl.appendChild(buttonEl);
+    }
+  }
+  renderSavedSearch();
 
   // need to call the api now and enter the city to the query parameter
   // use fetch?
@@ -116,13 +132,3 @@ formEl.addEventListener("submit", (event) => {
       }
     });
 });
-
-function renderSavedSearch() {
-  searchHistoryListEl.innerHTML = "";
-  for (var i = 0; i < searchHistoryArr.length; i++) {
-    var city = searchHistoryArr[i];
-    var buttonEl = document.createElement("button");
-    buttonEl.textContent = searchHistoryArr[i].toString();
-    searchHistoryListEl.appendChild(buttonEl);
-  }
-}
