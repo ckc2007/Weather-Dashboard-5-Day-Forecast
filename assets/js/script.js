@@ -116,12 +116,11 @@ $(document).on("click", ".btn", function () {
               `;
         forecastEl.appendChild(forecastChildEl);
       }
-    })
+    });
 });
 // end button litener
 
-function searchWeather() {
-  // event listener for the search form submit button
+function findWeather() {
   formEl.addEventListener("submit", (event) => {
     // remember to do this to prevent auto clearing and reload
     event.preventDefault();
@@ -134,8 +133,8 @@ function searchWeather() {
     var city = cityInput.value;
     // console.log(city);
     // need a tile case function here -
-    function toTitleCase(str) {
-      return str
+    function title(string) {
+      return string
         .toLowerCase()
         .split(" ")
         .map(function (word) {
@@ -143,7 +142,7 @@ function searchWeather() {
         })
         .join(" ");
     }
-    let cityProper = toTitleCase(city);
+    let cityProper = title(city);
     searchHistoryArr.push(cityProper);
     saveLocal();
     // debug here - do we need this here - yes
@@ -246,12 +245,12 @@ function searchWeather() {
           //   console.log(forecastHistoryArr);
           //   forecastHistoryArr.push(forecastChildEl);
         }
-      })
+      });
   });
   //   end submit button event listener
 }
 // end submit button function
-searchWeather();
+findWeather();
 
 clearSearchBtn.addEventListener("click", function () {
   localStorage.removeItem("search-history");
