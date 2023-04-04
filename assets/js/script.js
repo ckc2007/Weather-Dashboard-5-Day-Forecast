@@ -1,7 +1,4 @@
-// set up variables to target html elements
-// i would like to use jquery here...but something wasn't working - debug
 var formEl = document.querySelector("#search-form");
-// var submitBtn = document.querySelector("#submitBtn");
 var cityInput = document.querySelector("#city-input");
 var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
@@ -24,11 +21,6 @@ if (localStorage.getItem("search-history") !== null) {
 function saveLocal() {
   localStorage.setItem("search-history", JSON.stringify(searchHistoryArr));
 }
-
-// arrays to hold current and future weather data from search
-// var currentHistoryArr = [];
-// var forecastHistoryArr = [];
-
 //   add city to the saved search list
 function renderSavedSearch() {
   searchHistoryListEl.innerHTML = "";
@@ -38,17 +30,14 @@ function renderSavedSearch() {
     buttonEl.setAttribute("id", `${searchHistoryArr[i]}`);
     buttonEl.classList.add("btn");
     buttonEl.textContent = searchHistoryArr[i].toString();
-    // savedCityBtn[i].appendChild(buttonEl);
     searchHistoryListEl.appendChild(buttonEl);
     var breakEl = document.createElement("br");
     searchHistoryListEl.appendChild(breakEl);
-    // searchHistoryArr.push(`${searchHistoryArr[i]}`);
   }
   saveLocal();
 }
 
 renderSavedSearch();
-// would like to eventually refactor this so that its not just a duplicate of the api call - could this be saved to local storage? would need to search the local storage array for an object with tags identifying location, current and future (day 1-5) - for now this seems to work fine.
 // render the info based on a button click - id is city name:
 $(document).on("click", ".btn", function () {
   var city = $(this).attr("id");
@@ -79,7 +68,7 @@ $(document).on("click", ".btn", function () {
             <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>
             <p>Description: ${currentWeather.description}</p>
           `;
-
+      // get the forecast data
       return fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}`
       );
@@ -118,7 +107,7 @@ $(document).on("click", ".btn", function () {
       }
     });
 });
-// end button litener
+// end button listener
 
 function findWeather() {
   formEl.addEventListener("submit", (event) => {
@@ -127,12 +116,11 @@ function findWeather() {
     //   use asynchronous
     currentWeatherEl.innerHTML = "";
     forecastEl.innerHTML = "";
-    // what are we getting?
     // get the user input value
     // I would probably move this inside the fetch so that if the city does not exist it will not create a button - but come back to this later
     var city = cityInput.value;
     // console.log(city);
-    // need a tile case function here -
+    // need a tile case function here:
     function title(string) {
       return string
         .toLowerCase()
@@ -145,10 +133,9 @@ function findWeather() {
     let cityProper = title(city);
     searchHistoryArr.push(cityProper);
     saveLocal();
-    // debug here - do we need this here - yes
+    // debug here - do we need this here? - yes
     renderSavedSearch();
     // need to call the api now and enter the city to the query parameter
-    // use fetch?
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}`
     )
@@ -160,16 +147,16 @@ function findWeather() {
         const currentWeather = {
           //   find under the name property of data object returned from weather
           city: data.name,
-          // date comes in like this: 1680477816 --- seconds multiply by 1000 to get miliseconds format
+          // date comes in like this: 1680477816 --- seconds multiply by 1000 to get MILISECONDS format
           // according to api docs, this is: Time of data forecasted, unix, UTC
-          // lol returns 1970...
-          // The UNIX timestamp is defined as the number of seconds since January 1, 1970 UTC. In JavaScript, in order to get the current timestamp, you can use Date. now() . It's important to note that Date.
+          // if not modified returns 1970
+          // The UNIX timestamp is defined as the number of SECONDS since January 1, 1970 UTC. In JavaScript, in order to get the current timestamp, you can use Date. now() . It's important to note that Date.
           // new Date()
           // When called as a constructor, returns a new Date object.
           date: new Date(data.dt * 1000),
           // list.weather.icon Weather icon id
           icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-          // need to adjust the unity here:
+          // need to adjust the units here:
           // forecast.temperature.unit Unit of measurements. Possible value is Celsius, Kelvin, Fahrenheit.
           // kelvin to farenheit conversion - also limit decimals
           temperature: ((data.main.temp - 273.15) * (9 / 5) + 32).toFixed(2),
@@ -178,7 +165,6 @@ function findWeather() {
           // i like the description data - lets include that too
           description: data.weather[0].description,
         };
-
         //   show current weather data
         //   create a paragraph, or maybe make a card and asign innerText - for now <p>
         currentWeatherEl.innerHTML = `
@@ -186,16 +172,12 @@ function findWeather() {
         currentWeather.city
       } (${currentWeather.date.toLocaleDateString()})<img src="${
           currentWeather.icon
-          // use the description as the alt << see above
         }" alt="${data.weather[0].description}"></h3>
       <p>Temperature: ${currentWeather.temperature} °F</p>
       <p>Humidity: ${currentWeather.humidity}%</p>
       <p>Wind Speed: ${currentWeather.windSpeed} MPH</p>
       <p>Description: ${currentWeather.description}</p>
     `;
-        // currentHistoryArr.push(currentWeatherEl);
-        // console.log(currentWeatherEl);
-        // console.log(currentHistoryArr);
         // get the forecast data >>> research forecaset api docs here - having trouble finding the right keys
         return fetch(
           `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}`
@@ -234,7 +216,7 @@ function findWeather() {
           forecastChildEl.classList.add("card");
           forecastChildEl.innerHTML = `
           <h3>${forecast[i].date.toLocaleDateString()}
-          <img src="${forecast[i].icon}" alt="${forecast[i].description}"></h3>
+          <img src="${forecast[i].icon}"></h3>
           <p>Temperature: ${forecast[i].temperature} °F</p>
           <p>Humidity: ${forecast[i].humidity}%</p>
           <p>Wind Speed: ${forecast[i].windSpeed} MPH</p>
