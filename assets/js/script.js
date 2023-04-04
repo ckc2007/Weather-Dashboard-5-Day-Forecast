@@ -225,7 +225,6 @@ function findWeather() {
           forecastEl.appendChild(forecastChildEl);
           //   console.log(forecastChildEl);
           //   console.log(forecastHistoryArr);
-          //   forecastHistoryArr.push(forecastChildEl);
         }
       });
   });
